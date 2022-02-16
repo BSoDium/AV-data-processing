@@ -1,5 +1,4 @@
 
-
 function calcul_r(D_app, parametres)
 
   a = parametres[1]
@@ -57,7 +56,9 @@ function calcul_score(parametres_VT, parametres_estim)
   y_max = ceil(max([y_F1_VT, y_F2_VT, y_F1_estim, y_F2_estim]) + a_max)
 
   pas_echantillonnage = 0.25
-  [X, Y] = meshgrid(x_min:pas_echantillonnage:x_max, y_min:pas_echantillonnage:y_max)
+  x_range = x_min:pas_echantillonnage:x_max
+  y_range = y_min:pas_echantillonnage:y_max
+  [X, Y] = [x_range' .* ones(size(y_range)), ones(size(x_range))' .* y_range]
 
   d_P_F1_VT = sqrt((X - x_F1_VT) .^ 2 + (Y - y_F1_VT) .^ 2)
   d_P_F2_VT = sqrt((X - x_F2_VT) .^ 2 + (Y - y_F2_VT) .^ 2)
