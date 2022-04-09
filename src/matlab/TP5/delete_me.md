@@ -1,0 +1,1 @@
+Need some help ? Here's [an answer](https://github.com/Guillemain/thieesne/blob/c93c0efbb5dbc157694a3fb4448c052e516ec60e/TAV/TP9/exercice_2.m)
