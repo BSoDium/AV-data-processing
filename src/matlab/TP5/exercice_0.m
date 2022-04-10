@@ -17,7 +17,7 @@ pas_entre_affichages = floor(q_max / nb_affichages);
 temps_pause = 0.0005;
 
 % Lecture et affichage de l'image :
-I = imread('../data/colonie.png');
+I = imread('data/colonie.png');
 I = rgb2gray(I);
 I = double(I);
 I = I(1:400, 100:450);

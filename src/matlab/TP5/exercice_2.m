@@ -28,7 +28,7 @@ temps_affichage = 0.001;
 %  -----------------------------------------------------------------------
 
 % Image loading and display :
-I = imread('../data/colonie.png');
+I = imread('data/colonie.png');
 I = rgb2gray(I);
 I = double(I);
 I = I(100:500, 100:500);

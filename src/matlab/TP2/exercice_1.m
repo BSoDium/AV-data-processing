@@ -37,7 +37,7 @@ plot(x_j, y_j, '+b', 'MarkerSize', 10, 'LineWidth', 3);
 
 % Paramètres du modèle :
 d = 16; % Testez plusieurs valeurs de d entre 2 et 20
-lambda = 0.05; % Testez plusieurs valeurs dans l'intervalle [0,100]
+lambda = 100; % Testez plusieurs valeurs dans l'intervalle [0,100]
 
 % Estimation des paramètres de la courbe de Bèzier è partir des donnèes bruitèes :
 beta_estime = moindres_carres_ecretes(D_app, beta_0, beta_d, d, lambda);
