@@ -1,5 +1,5 @@
+- [Abstract](#abstract)
 - [Estimation de paramètres](#estimation-de-paramètres)
-  - [Introduction](#introduction)
   - [Structure du code](#structure-du-code)
   - [Méthodes impémentées](#méthodes-impémentées)
     - [Implémentation de `moindres_carres`](#implémentation-de-moindres_carres)
@@ -7,7 +7,6 @@
     - [Implémentations de `erreur_generalisation` et `estimation_d_sigma`](#implémentations-de-erreur_generalisation-et-estimation_d_sigma)
     - [Implémentations de `calcul_VC` et `estimation_d_sigma_bis`](#implémentations-de-calcul_vc-et-estimation_d_sigma_bis)
 - [Contrôle de la complexité par régularisation](#contrôle-de-la-complexité-par-régularisation)
-  - [Introduction](#introduction-1)
   - [Structure du code](#structure-du-code-1)
   - [Méthodes implémentées](#méthodes-implémentées)
     - [Implémentation de `moindes_carres_ecretes`](#implémentation-de-moindes_carres_ecretes)
@@ -15,24 +14,23 @@
     - [Implémentation de `moindres_carres_bis` et simulation de la silhouette d'une flamme de bougie](#implémentation-de-moindres_carres_bis-et-simulation-de-la-silhouette-dune-flamme-de-bougie)
     - [Implémentation de `estimation_lois_n` et `simulation`](#implémentation-de-estimation_lois_n-et-simulation)
 - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em)
-  - [Introduction](#introduction-2)
   - [Estimation par le maximum de vraisemblance](#estimation-par-le-maximum-de-vraisemblance)
   - [Estimation par résolution d'un système linéaire](#estimation-par-résolution-dun-système-linéaire)
   - [Estimation de paramètres d'une paire d'ellipses](#estimation-de-paramètres-dune-paire-dellipses)
   - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em-1)
 - [Segmentation par classification](#segmentation-par-classification)
-  - [Introduction](#introduction-3)
   - [Segmentation par classification supervisée](#segmentation-par-classification-supervisée)
   - [Segmentation par classification non supervisée](#segmentation-par-classification-non-supervisée)
 - [Détection d'objets dans une image](#détection-dobjets-dans-une-image)
-  - [Introduction](#introduction-4)
   - [Détection de flamants roses par un champ de Markov](#détection-de-flamants-roses-par-un-champ-de-markov)
   - [Détection de flamants roses par processus ponctuel marqué](#détection-de-flamants-roses-par-processus-ponctuel-marqué)
+- [Conclusion](#conclusion)
 
+
+# Abstract
+> A rédiger
 
 # Estimation de paramètres
-
-## Introduction
 
 Cette première partie se donne pour but d'étudier le processus d'estimation des paramètres d'une courbe de Bézier de degré variable, ainsi que des méthodes permettant le choix de son degré.
 
@@ -129,7 +127,6 @@ ___
 
 # Contrôle de la complexité par régularisation
 
-## Introduction
 
 Dans la partie précédente, on avait exploré deux méthodes d'estimation du degré d'une courbe de Bézier, par minimisation de l'erreur de généralisation ou de la validation croisée. On se donne maintenant pour but d'étudier une approche différente, celle de régularisation.
 
@@ -243,7 +240,6 @@ ___
 
 # Estimation par l'algorithme EM
 
-## Introduction
 
 Cette nouvelle partie se donne pour but **d'estimer les paramètres d'une ellipse** approximant au mieux un ensemble de points. Les ellipses utilisées ici pour la génération du nuage de point (script `donnees`) sont définies par les cinq paramètres suivants : $a$ demi longueur du grand axe, $e$ excentricité, $x$ abscisse du centre, $y$ ordonnée du centre et $\theta$ angle polaire du grand axe.
 
@@ -336,7 +332,6 @@ Le script `exercice_4` ne parvient néanmoins pas toujours à trouver la bonne p
 
 # Segmentation par classification
 
-## Introduction
 
 Cette partie s'intéresse à la segmentation d'images en niveau de gris par classification. Le principe est simple : on choisit N classes supposées gaussiennes, et l'on détermine la configuration maximisant la probabilité a posteriori de $k = (k_s)_{s\in S}$, en supposant les moyennes et les écarts-types des classes connus au préalable. 
 
@@ -397,9 +392,30 @@ Le script signale en fin d'exécution un **pourcentage de pixels correctement cl
 
 # Détection d'objets dans une image
 
-## Introduction
+On aborde maintenant la détection et le comptage d'individus sur une image, en l'occurence des flamants. Le principe directeur de cette partie est assez simple : on place des disques sur l'image à analyser, et on les déplace de façon à ce que le niveau de gris moyen de la surface qu'ils couvrent soit maximal.
 
 ## Détection de flamants roses par un champ de Markov
 
-## Détection de flamants roses par processus ponctuel marqué
+L'exécution du script `exercice_0` nous permet de trouver une faille à la technique mentionnée précédemment, qui est la tendance naturelle des disques à ce regrouper en deux ou trois points très lumineux, en raison du fort niveau de gris en ces positions.
 
+![run exercice 0](res/TP5/run_0.svg)
+___
+<figcaption align="center">
+  <b>Fig. 25 : Détection naïve sans contraintes entre les disques</b>
+</figcaption>
+
+> A rédiger
+
+![run exercice 1](res/TP5/run_1.svg)
+___
+<figcaption align="center">
+  <b>Fig. 26 : Détection avec contraintes de proximité entre les disques</b>
+</figcaption>
+
+## Détection de flamants roses par processus ponctuel marqué
+> A rédiger
+
+
+
+# Conclusion
+> A rédiger
