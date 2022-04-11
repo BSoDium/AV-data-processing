@@ -357,7 +357,7 @@ Il est intéressant par ailleurs de tester des configurations moins optimales :
 ![run exercice 1, 3 classes](res/TP4/run_1_3classes.svg)
 ___
 <figcaption align="center">
-  <b>Fig. 21 : Cas limite - Seulement 3 classes</b>
+  <b>Fig. 21 : Cas limite (supervisé) - Seulement 3 classes</b>
 </figcaption>
 
 On constate ici que le cercle le plus sombre est catégorisé comme fond d'image en raison de sa proximité chromatique avec ce dernier.
@@ -365,7 +365,7 @@ On constate ici que le cercle le plus sombre est catégorisé comme fond d'image
 ![run exercice 1, ](res/TP4/run_1_mal_select.svg)
 ___
 <figcaption align="center">
-  <b>Fig. 22 : Cas limite - Echantillons mal sélectionnés par l'utilisateur</b>
+  <b>Fig. 22 : Cas limite (supervisé) - Echantillons mal sélectionnés par l'utilisateur</b>
 </figcaption>
 
 Il est clair que l'étape de sélection est cruciale pour obtenir des résultats satisfaisants.
@@ -388,6 +388,12 @@ $$
 Les résultats sont très convaincants, et proches de ceux obtenus avec la classification supervisée, comme on peut le constater sur la figure suivante :
 
 ![run exercice 2](res/TP4/run_2.svg)
+___
+<figcaption align="center">
+  <b>Fig. 24 : Classification non supervisée</b>
+</figcaption>
+
+Le script signale en fin d'exécution un **pourcentage de pixels correctement classés égal à 88.59%**, ce qui est très proche des 92% obtenus précédemment avec la classification supervisée.
 
 # Détection d'objets dans une image
 
