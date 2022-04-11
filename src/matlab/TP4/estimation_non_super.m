@@ -5,7 +5,7 @@ function [moyennes, variances] = estimation_non_super(I, N, couleur_classes)
   palette_size = 256;
   pts = 0:(palette_size - 1);
 
-  n_trials = 300;
+  n_trials = 500;
   mu_array = zeros(n_trials, N);
   sigma_array = zeros(n_trials, N);
   scores = zeros(1, n_trials);
@@ -15,7 +15,7 @@ function [moyennes, variances] = estimation_non_super(I, N, couleur_classes)
     mu = randi([0 (palette_size - 1)], 1, N);
     mu_array(t, :) = mu;
 
-    % On tire un sigma (entre 10 et 25 pour des raisons inconnues)
+    % On tire un sigma (entre 10 et 25 pour accélérer le calcul)
     sigma = randi([10 25], 1, N);
     sigma_array(t, :) = sigma;
 

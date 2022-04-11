@@ -16,10 +16,18 @@
     - [Implémentation de `estimation_lois_n` et `simulation`](#implémentation-de-estimation_lois_n-et-simulation)
 - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em)
   - [Introduction](#introduction-2)
-    - [Estimation par le maximum de vraisemblance](#estimation-par-le-maximum-de-vraisemblance)
-    - [Estimation par résolution d'un système linéaire](#estimation-par-résolution-dun-système-linéaire)
-    - [Estimation de paramètres d'une paire d'ellipses](#estimation-de-paramètres-dune-paire-dellipses)
-    - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em-1)
+  - [Estimation par le maximum de vraisemblance](#estimation-par-le-maximum-de-vraisemblance)
+  - [Estimation par résolution d'un système linéaire](#estimation-par-résolution-dun-système-linéaire)
+  - [Estimation de paramètres d'une paire d'ellipses](#estimation-de-paramètres-dune-paire-dellipses)
+  - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em-1)
+- [Segmentation par classification](#segmentation-par-classification)
+  - [Introduction](#introduction-3)
+  - [Segmentation par classification supervisée](#segmentation-par-classification-supervisée)
+  - [Segmentation par classification non supervisée](#segmentation-par-classification-non-supervisée)
+- [Détection d'objets dans une image](#détection-dobjets-dans-une-image)
+  - [Introduction](#introduction-4)
+  - [Détection de flamants roses par un champ de Markov](#détection-de-flamants-roses-par-un-champ-de-markov)
+  - [Détection de flamants roses par processus ponctuel marqué](#détection-de-flamants-roses-par-processus-ponctuel-marqué)
 
 
 # Estimation de paramètres
@@ -239,7 +247,7 @@ ___
 
 Cette nouvelle partie se donne pour but **d'estimer les paramètres d'une ellipse** approximant au mieux un ensemble de points. Les ellipses utilisées ici pour la génération du nuage de point (script `donnees`) sont définies par les cinq paramètres suivants : $a$ demi longueur du grand axe, $e$ excentricité, $x$ abscisse du centre, $y$ ordonnée du centre et $\theta$ angle polaire du grand axe.
 
-### Estimation par le maximum de vraisemblance
+## Estimation par le maximum de vraisemblance
 
 Dans un premier temps, on se concentre sur l'implémentation plutôt rudimentaire de la **méthode d'estimation par le maximum de vraisemblance**. On tire des ellipses au hasard et on calcule leur vraisemblance. On choisit alors l'ellipse qui la maximise. Pour rappel, le vraisemblance est obtenue à l'aide de la formule suivante :
 $$
@@ -255,7 +263,7 @@ Notre implémentation de `max_vraisemblance` nous donne ainsi le résultat suiva
 
 C'est une approche satisfaisante, puisque **le score retourné est de 0.95 environ**, mais elle reste néanmoins assez peu flexible, car moins fiable pour des nuages de points plus dispersés.
 
-### Estimation par résolution d'un système linéaire
+## Estimation par résolution d'un système linéaire
 
 On s'intéresse maintenant à une approche mettant en oeuvre une résolution en moindres carrés du système linéaire homogène :
 $$
@@ -285,7 +293,7 @@ Score de l'estimation par MC (Moindres carrés): 0.931
 ```
 Il est assez difficile de se prononcer sur l'efficacité de cette méthode vis-à-vis de la précédente simplement à partir de ces images, mais statistiquement, et surtout après de nombreux tests, la méthode MC semble l'emporter en termes de précision.
 
-### Estimation de paramètres d'une paire d'ellipses
+## Estimation de paramètres d'une paire d'ellipses
 
 Le problème se complexifie ici nettement, avec l'introduction d'une nouvelle ellipse dans le dataset, grâce au script `donnees_2`, une nouvelle difficulté que la fonction `max_vraisemblance_2` aborde en maximisant la log-vraisemblance $\ln(L_{P_1, P_2}(D_{app}))$ :
 $$
@@ -309,7 +317,7 @@ ___
 
 Par la suite, on se propose d'améliorer grandement les performances de cet algorithme grace à l'espérance-minisation.
 
-### Estimation par l'algorithme EM
+## Estimation par l'algorithme EM
 
 > L’algorithme EM (Espérance-Maximisation) est un algorithme très général. Il s’inspire de cette
 idée, à ceci près qu’il n’effectue pas une partition stricte des données.
@@ -324,4 +332,68 @@ Score de l'estimation par EM : 0.977
 ```
 avec l'algorithme EM loin en tête en termes de précision.
 Le script `exercice_4` ne parvient néanmoins pas toujours à trouver la bonne paire d'ellipses dans les situations où le résultat de l'estimation par MC, que l'on utilise comme point de départ, est trop éloigné de la réalité, et où les ellipses sont trop proches.
+
+
+# Segmentation par classification
+
+## Introduction
+
+Cette partie s'intéresse à la segmentation d'images en niveau de gris par classification. Le principe est simple : on choisit N classes supposées gaussiennes, et l'on détermine la configuration maximisant la probabilité a posteriori de $k = (k_s)_{s\in S}$, en supposant les moyennes et les écarts-types des classes connus au préalable. 
+
+## Segmentation par classification supervisée
+
+Dans un premier temps, on s'intéresse à une approche supervisée, qui consiste à déterminer les classes à partir de zones sélectionnées par l'utilisateur, et représentatives de chaque classe :
+
+![run exercice 1](res/TP4/run_1.svg)
+___
+<figcaption align="center">
+  <b>Fig. 20 : Classification supervisée basique</b>
+</figcaption>
+
+Comme on peut le constater, l'algorithme est très simple à implémenter, et ce comporte plutôt bien, si l'on fait abstraction de la présence d'un léger bruit sur l'image générée qui perturbe la classification.
+
+Il est intéressant par ailleurs de tester des configurations moins optimales :
+
+![run exercice 1, 3 classes](res/TP4/run_1_3classes.svg)
+___
+<figcaption align="center">
+  <b>Fig. 21 : Cas limite - Seulement 3 classes</b>
+</figcaption>
+
+On constate ici que le cercle le plus sombre est catégorisé comme fond d'image en raison de sa proximité chromatique avec ce dernier.
+
+![run exercice 1, ](res/TP4/run_1_mal_select.svg)
+___
+<figcaption align="center">
+  <b>Fig. 22 : Cas limite - Echantillons mal sélectionnés par l'utilisateur</b>
+</figcaption>
+
+Il est clair que l'étape de sélection est cruciale pour obtenir des résultats satisfaisants.
+C'est pourquoi on a tout intérêt à se tourner vers une classification non supervisée, qui ne nécessite pas l'intervention d'un "expert" (en l'occurrence, l'utilisateur).
+
+*Note au lecteur: la fonction `recuit_simule` ne produisant pas de résultats convaincants, je n'ai pas jugé intéressant de la détailler ici. Néanmoins, voici le résultat après 50 itérations du recuit :*
+
+![run exercice 1, recuit](res/TP4/run_1_recuit.svg)
+<figcaption align="center">
+  <b>Fig. 23 : Figure obtenue après 50 itérations du recuit simulé</b>
+</figcaption>
+
+## Segmentation par classification non supervisée
+
+On a maintenant modifié le script `exercice_1`, afin qu'il appelle la fonction `estimation_non_super` qui permet d'identifier les classes par tirage aléatoires. Ainsi, on génère des paramètres $\mu_i$ et $\sigma_i$ au hasard, et on choisit ceux qui minimisent l'argument du problème ci-dessous :
+$$
+  (\hat{\mu_i}, \hat{\sigma_i}, \hat{\pi_i})_{i \in \{1, ..., N\}} = \argmin_{(\mu_i, \sigma_i, \pi_i)_{i \in \{1, ..., N\}}} \sum_{x=0}^{255} \Bigg[f(x) - \sum_{i=1}^N \frac{p_i}{\sigma_i\sqrt{2\pi}} \exp\bigg\{-\frac{(x - \mu_i)^2}{2\sigma_i^2}\bigg\} \Bigg]
+$$
+
+Les résultats sont très convaincants, et proches de ceux obtenus avec la classification supervisée, comme on peut le constater sur la figure suivante :
+
+![run exercice 2](res/TP4/run_2.svg)
+
+# Détection d'objets dans une image
+
+## Introduction
+
+## Détection de flamants roses par un champ de Markov
+
+## Détection de flamants roses par processus ponctuel marqué
 
