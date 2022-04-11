@@ -4,40 +4,36 @@ taille_ecran = get(0, 'ScreenSize');
 L = taille_ecran(3);
 H = taille_ecran(4);
 
-%  -------the following block requires some modifications-----------------
-
 % Parametres :
 T = 1.0;
-N = 50; % Nombre de disques d'une configuration
 R = 10; % Rayon des disques
 q_max = 50;
 alpha = 0.99;
 beta = 1.0;
-lambda = 100;
+lambda_0 = 80;
+lambda = lambda_0;
+S = 110;
 
 R_carre = R * R;
 nb_points_disque = 30;
 increment_angulaire = 2 * pi / nb_points_disque;
 theta = 0:increment_angulaire:2 * pi;
 rose = [253 108 158] / 255;
-q_max = 100000;
-nb_valeurs_a_afficher = 10000;
-pas_entre_deux_affichages = floor(q_max / nb_valeurs_a_afficher);
 temps_affichage = 0.001;
-
-%  -----------------------------------------------------------------------
 
 % Image loading and display :
 I = imread('data/colonie.png');
 I = rgb2gray(I);
 I = double(I);
-I = I(100:500, 100:500);
+I = I(1:400, 100:450);
 [nb_lignes, nb_colonnes] = size(I);
 figure('Name', 'Detection de flamants roses', 'Position', [0.25 * L, 0, 0.75 * L, 0.5 * H]);
 
 subplot(1, 2, 2); % creating the graph
-xlabel('x'); % thanks copilot but I'll pass this one
-ylabel('y');
+axis([0 q_max -400 0]);
+set(gca, 'FontSize', 20);
+xlabel('Iterations', 'FontSize', 30);
+ylabel('Average grey level', 'FontSize', 30);
 
 % Generating the initial configuration :
 

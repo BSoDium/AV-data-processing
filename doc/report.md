@@ -404,7 +404,12 @@ ___
   <b>Fig. 25 : Détection naïve sans contraintes entre les disques</b>
 </figcaption>
 
-> A rédiger
+Dans le but de palier à ce problème, on introduit une énergie pour chaque disque, que l'on cherche à minimiser :
+$$
+  U(c) = -\sum_{1\le i\le N} \overline{I}(c_i) + \beta \sum_{1 \le j \le N} \delta(\|c_j - c_i\| \le \sqrt{2}R)
+$$
+
+On constate alors une nette amélioration, puisque les disques sont "forcés" à rester éloignés de leurs voisins, comme on peut le constater sur la figure suivante :
 
 ![run exercice 1](res/TP5/run_1.svg)
 ___
@@ -415,7 +420,7 @@ ___
 ## Détection de flamants roses par processus ponctuel marqué
 > A rédiger
 
-
+![run exercice 2](res/TP5/run_2.svg)
 
 # Conclusion
 > A rédiger
