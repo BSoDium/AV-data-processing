@@ -1,14 +1,14 @@
 - [Abstract](#abstract)
 - [Estimation de paramètres](#estimation-de-paramètres)
   - [Structure du code](#structure-du-code)
-  - [Méthodes impémentées](#méthodes-impémentées)
+  - [Méthodes implémentées](#méthodes-implémentées)
     - [Implémentation de `moindres_carres`](#implémentation-de-moindres_carres)
     - [Implémentation de `erreur_apprentissage`](#implémentation-de-erreur_apprentissage)
     - [Implémentations de `erreur_generalisation` et `estimation_d_sigma`](#implémentations-de-erreur_generalisation-et-estimation_d_sigma)
     - [Implémentations de `calcul_VC` et `estimation_d_sigma_bis`](#implémentations-de-calcul_vc-et-estimation_d_sigma_bis)
 - [Contrôle de la complexité par régularisation](#contrôle-de-la-complexité-par-régularisation)
   - [Structure du code](#structure-du-code-1)
-  - [Méthodes implémentées](#méthodes-implémentées)
+  - [Méthodes implémentées](#méthodes-implémentées-1)
     - [Implémentation de `moindes_carres_ecretes`](#implémentation-de-moindes_carres_ecretes)
     - [Implémentation de `calcul_VC_bis` et `estimation_lambda_sigma`](#implémentation-de-calcul_vc_bis-et-estimation_lambda_sigma)
     - [Implémentation de `moindres_carres_bis` et simulation de la silhouette d'une flamme de bougie](#implémentation-de-moindres_carres_bis-et-simulation-de-la-silhouette-dune-flamme-de-bougie)
@@ -28,7 +28,7 @@
 
 
 # Abstract
-> A rédiger
+Ce rapport présente l'intégralité du travail réalisé dans le cadre des TP 1 à 5 de traitement de données audio-visuelles. Les images et extraits de code utilisés ici sont fournis uniquement à titre d'illustration de mes propos, et ne constituent en aucun cas une solution idéale aux questions posées. Toute utilisation de ces résultats devra donc se faire avec prudence.
 
 # Estimation de paramètres
 
@@ -55,7 +55,7 @@ Ainsi qu'un exemple d'utilisation :
 y = Lib.gNoise(Lib.bezier(beta_0, beta, beta_d, x), sigma);
 ```
 
-## Méthodes impémentées
+## Méthodes implémentées
 
 ### Implémentation de `moindres_carres`
 
@@ -418,9 +418,44 @@ ___
 </figcaption>
 
 ## Détection de flamants roses par processus ponctuel marqué
-> A rédiger
+
+On s'intéresse maintenant à une approche par processus ponctuel marqué, qui à la différence d'un champ de Markov, est un processus aléatoire dont la dimension temporelle est importante. Encore une fois, on cherche à minimiser l'énergie, dont la nouvelle expression est :
+$$
+  U(c) = -\sum_{1\le i\le N} U_i(c_i) + \beta \sum_{1 \le j \le N} \delta(\|c_j - c_i\| \le \sqrt{2}R)
+$$
+avec $U_i(c_i)$ la fonction sigmoïde définie comme suit :
+$$
+  U_i(c_i) = 1 - \frac{2}{1 + \exp\bigg\{-\gamma\bigg[\frac{T(c_i)}{S} - 1\bigg]\bigg\}}
+$$
+(cf. sujet pour plus de détails concernant les termes évoqués)
+
+Le script `exercice_2` que nous nous proposons de modifier, lui, applique l'algorithme d'optimisation par naissances/morts, dont nous avons détaillé les étapes ci-dessous :
+
+```mermaid
+stateDiagram-v2
+  state "Naissances" as nais
+  state "Tri des disques" as tri
+  state "Morts" as mort
+  state "Initialisation" as init
+  state test <<choice>>
+  state "Boucle" as loop
+  state loop {
+    [*] --> nais
+    nais --> tri
+    tri --> mort
+    mort --> test
+    test --> nais: pas de convergence
+    test --> [*]: convergence
+  }
+  [*] --> init
+  init --> loop
+  loop --> [*]
+```
+
+Les résultats obtenus sont plutôt satisfaisants, et on peut constater que les disques sont bien placés, bien que certains d'entre-eux soient tout de même quelques-fois plus d'un par flamant. Ce problème peut être résolu en modifiant certains des paramètres de façon a contraindre un peu plus les disques à rester bien sur le flamant, tout en gardant leurs distances avec leurs voisins.
 
 ![run exercice 2](res/TP5/run_2.svg)
 
 # Conclusion
-> A rédiger
+
+Cette étude a été très intéressante, et m'a permis d'aborder une multitude de problématiques du traitement d'image aussi passionnantes que variées. J'aurais aimé pouvoir y consacrer plus de temps, et faire notamment les parties facultatives des TP, mais le travail requis dans les autres matières ne m'a pas permis de le faire.
