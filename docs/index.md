@@ -1,22 +1,22 @@
 - [Abstract](#abstract)
-- [Estimation de paramètres](#estimation-de-paramètres)
+- [Estimation de paramèt./res](#estimation-de-paramètres)
   - [Structure du code](#structure-du-code)
   - [Méthodes implémentées](#méthodes-implémentées)
-    - [Implémentation de `moindres_carres`](#implémentation-de-moindres_carres)
+    - [Implémentation de `moind./res_car./res`](#implémentation-de-moindres_carres)
     - [Implémentation de `erreur_apprentissage`](#implémentation-de-erreur_apprentissage)
     - [Implémentations de `erreur_generalisation` et `estimation_d_sigma`](#implémentations-de-erreur_generalisation-et-estimation_d_sigma)
     - [Implémentations de `calcul_VC` et `estimation_d_sigma_bis`](#implémentations-de-calcul_vc-et-estimation_d_sigma_bis)
 - [Contrôle de la complexité par régularisation](#contrôle-de-la-complexité-par-régularisation)
   - [Structure du code](#structure-du-code-1)
   - [Méthodes implémentées](#méthodes-implémentées-1)
-    - [Implémentation de `moindes_carres_ecretes`](#implémentation-de-moindes_carres_ecretes)
+    - [Implémentation de `moindes_car./res_ecretes`](#implémentation-de-moindes_carres_ecretes)
     - [Implémentation de `calcul_VC_bis` et `estimation_lambda_sigma`](#implémentation-de-calcul_vc_bis-et-estimation_lambda_sigma)
-    - [Implémentation de `moindres_carres_bis` et simulation de la silhouette d'une flamme de bougie](#implémentation-de-moindres_carres_bis-et-simulation-de-la-silhouette-dune-flamme-de-bougie)
+    - [Implémentation de `moind./res_car./res_bis` et simulation de la silhouette d'une flamme de bougie](#implémentation-de-moindres_carres_bis-et-simulation-de-la-silhouette-dune-flamme-de-bougie)
     - [Implémentation de `estimation_lois_n` et `simulation`](#implémentation-de-estimation_lois_n-et-simulation)
 - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em)
   - [Estimation par le maximum de vraisemblance](#estimation-par-le-maximum-de-vraisemblance)
   - [Estimation par résolution d'un système linéaire](#estimation-par-résolution-dun-système-linéaire)
-  - [Estimation de paramètres d'une paire d'ellipses](#estimation-de-paramètres-dune-paire-dellipses)
+  - [Estimation de paramèt./res d'une paire d'ellipses](#estimation-de-paramètres-dune-paire-dellipses)
   - [Estimation par l'algorithme EM](#estimation-par-lalgorithme-em-1)
 - [Segmentation par classification](#segmentation-par-classification)
   - [Segmentation par classification supervisée](#segmentation-par-classification-supervisée)
@@ -30,9 +30,9 @@
 # Abstract
 Ce rapport présente l'intégralité du travail réalisé dans le cadre des TP 1 à 5 de traitement de données audio-visuelles. Les images et extraits de code utilisés ici sont fournis uniquement à titre d'illustration de mes propos, et ne constituent en aucun cas une solution idéale aux questions posées. Toute utilisation de ces résultats devra donc se faire avec prudence.
 
-# Estimation de paramètres
+# Estimation de paramèt./res
 
-Cette première partie se donne pour but d'étudier le processus d'estimation des paramètres d'une courbe de Bézier de degré variable, ainsi que des méthodes permettant le choix de son degré.
+Cette première partie se donne pour but d'étudier le processus d'estimation des paramèt./res d'une courbe de Bézier de degré variable, ainsi que des méthodes permettant le choix de son degré.
 
 ## Structure du code
 
@@ -57,11 +57,11 @@ y = Lib.gNoise(Lib.bezier(beta_0, beta, beta_d, x), sigma);
 
 ## Méthodes implémentées
 
-### Implémentation de `moindres_carres`
+### Implémentation de `moind./res_car./res`
 
 Après exécution du script `exercice_1`, on obtient une solution approchée de $\hat{\beta}$ qui produit la courbe de Bézier suivante, de degré $d = 20$ choisi au préalable :
 
-![run exercice 1 d=20](res/TP1/run_1_d20.svg)
+![run exercice 1 d=20](./res/TP1/run_1_d20.svg)
 <figcaption align="center">
   <b>Fig. 1 : Courbe de Bézier de degré d = 20</b>
 </figcaption>
@@ -70,7 +70,7 @@ ___
 
 La courbe précédente est très clairement biaisée par un surentrainement. Selon la même logique, pour des valeurs de $d$ faibles, on obtient un modèle sous-entrainé, comme le montre le résultat suivant, obtenu pour $d = 2$ :
 
-![run exercice 1 d=2](res/TP1/run_1_d2.svg)
+![run exercice 1 d=2](./res/TP1/run_1_d2.svg)
 <figcaption align="center">
   <b>Fig. 2 : Courbe de Bézier de degré d = 2</b>
 </figcaption>
@@ -79,7 +79,7 @@ ___
 
 On se rend cependant très rapidement compte de la nécessité de choisir une valeur du degré plus adaptée, comme par exemple $d = 8$, dont la courbe associée est visible ci-dessous :
 
-![run exercice 1 d=8](res/TP1/run_1_d8.svg)
+![run exercice 1 d=8](./res/TP1/run_1_d8.svg)
 <figcaption align="center">
   <b>Fig. 3 : Courbe de Bézier de degré d = 8</b>
 </figcaption>
@@ -92,7 +92,7 @@ Ce résultat est bien plus satisfaisant, et semble coller bien mieux à la courb
 
 L'exécution du script `exercice_2` permet de visualiser l'évolution de l'erreur quadratique moyenne d'apprentissage en fonction du degré de la courbe de Bézier.
 
-![run exercice 2](res/TP1/run_2.svg)
+![run exercice 2](./res/TP1/run_2.svg)
 <figcaption align="center">
   <b>Fig. 4 : Erreur quadratique moyenne d'apprentissage en fonction du degré</b>
 </figcaption>
@@ -105,7 +105,7 @@ C'est un résultat cohérent, puisque l'erreur décroit en fonction du degré de
 
 Lorsque l'on exécute le script `exercice_3`, faisant appel à `erreur_generalisation` et `estimation_d_sigma`, on s'aperçoit que l'erreur de généralisation, contrairement à l'erreur d'apprentissage, a tendance à croitre à partir d'une certaine valeur de $d$, en l'occurence passé le seuil $d_{max} \approx 8$.
 
-![run exercice 3](res/TP1/run_3.svg)
+![run exercice 3](./res/TP1/run_3.svg)
 <figcaption align="center">
   <b>Fig. 5 : Erreur de généralisation en fonction du degré</b>
 </figcaption>
@@ -116,9 +116,9 @@ Cette propriété est très avantageuse, puisqu'elle pourait nous permettre d'é
 
 ### Implémentations de `calcul_VC` et `estimation_d_sigma_bis`
 
-Le script `exercice_4` met en évidence l'utilité de la *cross validation approach* (approche par validation croisée) *leave-one-out* pour l'estimation des paramètres d'une courbe de Bézier. En effet, elle permet de clairement distinguer les valeurs de $d$ pour lesquelles on peut parler de sur-apprentissage et celle pour lesquelles il s'agit d'une sur-généralisation.
+Le script `exercice_4` met en évidence l'utilité de la *cross validation approach* (approche par validation croisée) *leave-one-out* pour l'estimation des paramèt./res d'une courbe de Bézier. En effet, elle permet de clairement distinguer les valeurs de $d$ pour lesquelles on peut parler de sur-apprentissage et celle pour lesquelles il s'agit d'une sur-généralisation.
 
-![run exercice 4](res/TP1/run_4.svg)
+![run exercice 4](./res/TP1/run_4.svg)
 <figcaption align="center">
   <b>Fig. 6 : Validation croisée en fonction du degré</b>
 </figcaption>
@@ -136,7 +136,7 @@ Dans cette partie, ainsi que la majorité des suivantes, on a gardé la structur
 C'est d'ailleurs pour la même raison que les tâches facultatives n'ont pas été abordées.
 ## Méthodes implémentées
 
-### Implémentation de `moindes_carres_ecretes`
+### Implémentation de `moindes_car./res_ecretes`
 
 Ici, on a fait le choix de ne plus travailler avec $\beta$ mais avec $\delta$, tq
 $$
@@ -150,29 +150,29 @@ $$
 \text{avec } C = B - A\overline{\beta}^\top
 $$
 
-La fonction `moindres_carres_ecretes` détermine la valeur de $\hat{\beta}$ en appliquand le principe de la *ridge regression* (regression regression). Un hyperparamètre $\lambda$ est ajouté afin de pénaliser les écarts $\delta_i$ les plus importants.
+La fonction `moind./res_car./res_ecretes` détermine la valeur de $\hat{\beta}$ en appliquand le principe de la *ridge reg./ression* (reg./ression reg./ression). Un hyperparamètre $\lambda$ est ajouté afin de pénaliser les écarts $\delta_i$ les plus importants.
 
 L'exécution suivante du script `exercice_1`, mettant en oeuvre cette méthode, affiche des résultats bien plus satisfaisant que les précédents pour une valeur de lambda faible (0.05).
 
-![run exercice 1](res/TP2/run_1.svg)
+![run exercice 1](./res/TP2/run_1.svg)
 <figcaption align="center">
-  <b>Fig. 7 : Résultats de la méthode moindres_carres_ecretes</b>
+  <b>Fig. 7 : Résultats de la méthode moind./res_car./res_ecretes</b>
 </figcaption>
 
 ___
 
 En faisant varier lambda dans l'intervalle $[0, 100]$, on constate que plus le lambda est grand, plus la courbe obtenue se rapproche d'une droite reliant les points $P_0$ et $P_d$, comme le montre l'image ci-dessous, prise pour un lambda de $100$.
 
-![run exercice 1 haut lambda](res/TP2/run_1_lambda_100.svg)
+![run exercice 1 haut lambda](./res/TP2/run_1_lambda_100.svg)
 <figcaption align="center">
-  <b>Fig. 8 : Résultats de la méthode moindres_carres_ecretes pour un lambda très élevé</b>
+  <b>Fig. 8 : Résultats de la méthode moind./res_car./res_ecretes pour un lambda très élevé</b>
 </figcaption>
 
 ___
 
 ### Implémentation de `calcul_VC_bis` et `estimation_lambda_sigma`
 
-On s'intéresse maintenant au calcul de la validation croisée définie, rappelons-le, par l'expression suivante :
+On s'inté./resse maintenant au calcul de la validation croisée définie, rappelons-le, par l'exp./ression suivante :
 $$
 VC = \frac{1}{n_{app}} \sum_{i=1}^{n_{app}} \bigg[y_j - f(\beta_0^*, \hat{\beta}_j, \beta_d^*, x_j)\bigg]^2
 $$
@@ -183,14 +183,14 @@ lambda_optimal = liste_lambda(ind);
 sigma_estime = sqrt(m);
 ```
 
-![run exercice 2](res/TP2/run_2.svg)
+![run exercice 2](./res/TP2/run_2.svg)
 <figcaption align="center">
   <b>Fig. 9 : Résultats obtenus après estimation de lambda et de sigma d'après les valeurs de VC</b>
 </figcaption>
 
 ___
 
-![run exercice 2 VC lambda](res/TP2/run_2_VC_lambda.svg)
+![run exercice 2 VC lambda](./res/TP2/run_2_VC_lambda.svg)
 <figcaption align="center">
   <b>Fig. 10 : Valeurs de VC obtenues en fonction de lambda</b>
 </figcaption>
@@ -198,20 +198,20 @@ ___
 ___
 
 
-### Implémentation de `moindres_carres_bis` et simulation de la silhouette d'une flamme de bougie
+### Implémentation de `moind./res_car./res_bis` et simulation de la silhouette d'une flamme de bougie
 
 Pour modéliser l'évolution de la flamme de bougie, on utilise la reformulation du problème proposée par le sujet.
 $$
   E^q X^q = F^q
 $$
-où $X^q$ contient les vecteurs de paramètres $\beta^q$ et $\gamma^q$ concaténés, soit $X^q = [\beta_1^q,...,\beta_{d-1}^q, \gamma_1^q, ..., \gamma_d^q]^\top$ (on a retiré le $\beta_d^q$ par soucis d'optimisation, puisqu'il est égal à $\gamma_d^q$).
+où $X^q$ contient les vecteurs de paramèt./res $\beta^q$ et $\gamma^q$ concaténés, soit $X^q = [\beta_1^q,...,\beta_{d-1}^q, \gamma_1^q, ..., \gamma_d^q]^\top$ (on a retiré le $\beta_d^q$ par soucis d'optimisation, puisqu'il est égal à $\gamma_d^q$).
 
 Notre implémentation nous permet ainsi d'obtenir une animation en exécutant le script `exercice_2`, dont quelques images sont affichées ci-dessous.
 
-|                          |                          |
-| :----------------------: | :----------------------: |
-| ![](res/TP2/run_3_a.svg) | ![](res/TP2/run_3_b.svg) |
-| ![](res/TP2/run_3_c.svg) | ![](res/TP2/run_3_d.svg) |
+|                            |                            |
+| :------------------------: | :------------------------: |
+| ![](./res/TP2/run_3_a.svg) | ![](./res/TP2/run_3_b.svg) |
+| ![](./res/TP2/run_3_c.svg) | ![](./res/TP2/run_3_d.svg) |
 ### Implémentation de `estimation_lois_n` et `simulation`
 
 Le corps de la fonction `estimation_lois_n` est assez concis, puisque le calcul des moyennes et des écart types peut se faire à l'aide de fonctions déjà implémentées dans matlab, en l'occurrence, `mean` et `std` (standard deviation) :
@@ -220,9 +220,9 @@ ecarts_types = std(X);
 moyennes = mean(X);
 ```
 
-La fonction simulation associe aux vecteurs de paramètres $\beta^q$ et $\gamma^q$ deux vecteurs de positions des points de la flamme de bougie, côté gauche et côté droit. Le résultat obtenu est, encore une fois, affiché ci-dessous :
+La fonction simulation associe aux vecteurs de paramèt./res $\beta^q$ et $\gamma^q$ deux vecteurs de positions des points de la flamme de bougie, côté gauche et côté droit. Le résultat obtenu est, encore une fois, affiché ci-dessous :
 
-![run exercice 3](res/TP2/run_4.svg)
+![run exercice 3](./res/TP2/run_4.svg)
 <figcaption align="center">
   <b>Fig. 11 : Capture d'écran de l'animation obtenue (script exercice_4)</b>
 </figcaption>
@@ -231,7 +231,7 @@ ___
 
 Le script `sequence_flammes` ajoute de la couleur à l'animation précédente, nous montrant l'intérêt de cette étude, ainsi que les nombreuses applications qu'elle pourrait avoir, dans le monde des jeux video par exemple. Ci-dessous, on peut voir une capture d'écran de l'animation finale :
 
-![run exercice 3 sequence](res/TP2/run_4_colored.svg)
+![run exercice 3 sequence](./res/TP2/run_4_colored.svg)
 <figcaption align="center">
   <b>Fig. 12 : Capture d'écran de l'animation obtenue (script sequence_flammes) avec couleur</b>
 </figcaption>
@@ -241,7 +241,7 @@ ___
 # Estimation par l'algorithme EM
 
 
-Cette nouvelle partie se donne pour but **d'estimer les paramètres d'une ellipse** approximant au mieux un ensemble de points. Les ellipses utilisées ici pour la génération du nuage de point (script `donnees`) sont définies par les cinq paramètres suivants : $a$ demi longueur du grand axe, $e$ excentricité, $x$ abscisse du centre, $y$ ordonnée du centre et $\theta$ angle polaire du grand axe.
+Cette nouvelle partie se donne pour but **d'estimer les paramèt./res d'une ellipse** approximant au mieux un ensemble de points. Les ellipses utilisées ici pour la génération du nuage de point (script `donnees`) sont définies par les cinq paramèt./res suivants : $a$ demi longueur du grand axe, $e$ excentricité, $x$ abscisse du centre, $y$ ordonnée du centre et $\theta$ angle polaire du grand axe.
 
 ## Estimation par le maximum de vraisemblance
 
@@ -253,15 +253,15 @@ avec $f_p$ la densité de probabilité des points $P_i \in D_{app}$
 
 Notre implémentation de `max_vraisemblance` nous donne ainsi le résultat suivant :
 
-| ![run exercice 1](res/TP3/run_1_donnees.svg) | ![run exercice 1](res/TP3/run_1.svg) |
-| :------------------------------------------: | :----------------------------------: |
-|              Fig. 13 : Données               |     Fig. 14 : Estimation obtenue     |
+| ![run exercice 1](./res/TP3/run_1_donnees.svg) | ![run exercice 1](./res/TP3/run_1.svg) |
+| :--------------------------------------------: | :------------------------------------: |
+|               Fig. 13 : Données                |      Fig. 14 : Estimation obtenue      |
 
-C'est une approche satisfaisante, puisque **le score retourné est de 0.95 environ**, mais elle reste néanmoins assez peu flexible, car moins fiable pour des nuages de points plus dispersés.
+C'est une approche satisfaisante, puisque **le score retourné est de 0.95 environ**, mais elle ./reste néanmoins assez peu flexible, car moins fiable pour des nuages de points plus dispersés.
 
 ## Estimation par résolution d'un système linéaire
 
-On s'intéresse maintenant à une approche mettant en oeuvre une résolution en moindres carrés du système linéaire homogène :
+On s'inté./resse maintenant à une approche mettant en oeuvre une résolution en moind./res carrés du système linéaire homogène :
 $$
   AX = O_{n_{app}}
 $$
@@ -278,18 +278,18 @@ Il est important de noter que, pour un écart-type $\sigma$ nul, le **score de l
 
 Pour $\sigma = 1$, voici le résultat obtenu :
 
-| ![run exercice 2](res/TP3/run_2_donnees.svg) | ![run exercice 2](res/TP3/run_2.svg) |
-| :------------------------------------------: | :----------------------------------: |
-|              Fig. 15 : Données               |     Fig. 16 : Estimation obtenue     |
+| ![run exercice 2](./res/TP3/run_2_donnees.svg) | ![run exercice 2](./res/TP3/run_2.svg) |
+| :--------------------------------------------: | :------------------------------------: |
+|               Fig. 15 : Données                |      Fig. 16 : Estimation obtenue      |
 
-Avec les scores suivants :
+Avec les sco./res suivants :
 ```console
 Score de l'estimation par MV (Maximum de vraisemblance) : 0.948
-Score de l'estimation par MC (Moindres carrés): 0.931
+Score de l'estimation par MC (Moind./res carrés): 0.931
 ```
 Il est assez difficile de se prononcer sur l'efficacité de cette méthode vis-à-vis de la précédente simplement à partir de ces images, mais statistiquement, et surtout après de nombreux tests, la méthode MC semble l'emporter en termes de précision.
 
-## Estimation de paramètres d'une paire d'ellipses
+## Estimation de paramèt./res d'une paire d'ellipses
 
 Le problème se complexifie ici nettement, avec l'introduction d'une nouvelle ellipse dans le dataset, grâce au script `donnees_2`, une nouvelle difficulté que la fonction `max_vraisemblance_2` aborde en maximisant la log-vraisemblance $\ln(L_{P_1, P_2}(D_{app}))$ :
 $$
@@ -300,16 +300,16 @@ La fonction `probabilites`, elle, permet d'associer les points à l'ellipse la p
 
 Les résultats obtenus sont les suivants :
 
-![run exercice 3](res/TP3/run_3_donnees.svg)
+![run exercice 3](./res/TP3/run_3_donnees.svg)
 ___
 <figcaption align="center">
   <b>Fig. 17 : Données d'origine</b>
 </figcaption>
 
 
-| ![run exercice 3](res/TP3/run_3_max_vrai.svg) | ![run exercice 3](res/TP3/run_3_moind_car.svg) |
-| :-------------------------------------------: | :--------------------------------------------: |
-|      Fig. 18 : Maximum de vraisemblance       |           Fig. 19 : Moindres carrés            |
+| ![run exercice 3](./res/TP3/run_3_max_vrai.svg) | ![run exercice 3](./res/TP3/run_3_moind_car.svg) |
+| :---------------------------------------------: | :----------------------------------------------: |
+|       Fig. 18 : Maximum de vraisemblance        |           Fig. 19 : Moind./res carrés            |
 
 Par la suite, on se propose d'améliorer grandement les performances de cet algorithme grace à l'espérance-minisation.
 
@@ -318,9 +318,9 @@ Par la suite, on se propose d'améliorer grandement les performances de cet algo
 > L’algorithme EM (Espérance-Maximisation) est un algorithme très général. Il s’inspire de cette
 idée, à ceci près qu’il n’effectue pas une partition stricte des données.
 
-On a ainsi créé les fonctions `probabilites_EM` et `moindres_carres_ponderes` qui permettent d'appliquer cette méthode (cf. sujet pour détails concernant les calculs réalisés).
+On a ainsi créé les fonctions `probabilites_EM` et `moind./res_car./res_ponde./res` qui permettent d'appliquer cette méthode (cf. sujet pour détails concernant les calculs réalisés).
 
-A terme, on obtient des scores plutôt impressionnants :
+A terme, on obtient des sco./res plutôt imp./ressionnants :
 ```console
 Score de l'estimation par MV : 0.785
 Score de l'estimation par MC : 0.914
@@ -333,13 +333,13 @@ Le script `exercice_4` ne parvient néanmoins pas toujours à trouver la bonne p
 # Segmentation par classification
 
 
-Cette partie s'intéresse à la segmentation d'images en niveau de gris par classification. Le principe est simple : on choisit N classes supposées gaussiennes, et l'on détermine la configuration maximisant la probabilité a posteriori de $k = (k_s)_{s\in S}$, en supposant les moyennes et les écarts-types des classes connus au préalable. 
+Cette partie s'inté./resse à la segmentation d'images en niveau de gris par classification. Le principe est simple : on choisit N classes supposées gaussiennes, et l'on détermine la configuration maximisant la probabilité a posteriori de $k = (k_s)_{s\in S}$, en supposant les moyennes et les écarts-types des classes connus au préalable. 
 
 ## Segmentation par classification supervisée
 
-Dans un premier temps, on s'intéresse à une approche supervisée, qui consiste à déterminer les classes à partir de zones sélectionnées par l'utilisateur, et représentatives de chaque classe :
+Dans un premier temps, on s'inté./resse à une approche supervisée, qui consiste à déterminer les classes à partir de zones sélectionnées par l'utilisateur, et représentatives de chaque classe :
 
-![run exercice 1](res/TP4/run_1.svg)
+![run exercice 1](./res/TP4/run_1.svg)
 ___
 <figcaption align="center">
   <b>Fig. 20 : Classification supervisée basique</b>
@@ -347,9 +347,9 @@ ___
 
 Comme on peut le constater, l'algorithme est très simple à implémenter, et ce comporte plutôt bien, si l'on fait abstraction de la présence d'un léger bruit sur l'image générée qui perturbe la classification.
 
-Il est intéressant par ailleurs de tester des configurations moins optimales :
+Il est inté./ressant par ailleurs de tester des configurations moins optimales :
 
-![run exercice 1, 3 classes](res/TP4/run_1_3classes.svg)
+![run exercice 1, 3 classes](./res/TP4/run_1_3classes.svg)
 ___
 <figcaption align="center">
   <b>Fig. 21 : Cas limite (supervisé) - Seulement 3 classes</b>
@@ -357,7 +357,7 @@ ___
 
 On constate ici que le cercle le plus sombre est catégorisé comme fond d'image en raison de sa proximité chromatique avec ce dernier.
 
-![run exercice 1, ](res/TP4/run_1_mal_select.svg)
+![run exercice 1, ](./res/TP4/run_1_mal_select.svg)
 ___
 <figcaption align="center">
   <b>Fig. 22 : Cas limite (supervisé) - Echantillons mal sélectionnés par l'utilisateur</b>
@@ -366,23 +366,23 @@ ___
 Il est clair que l'étape de sélection est cruciale pour obtenir des résultats satisfaisants.
 C'est pourquoi on a tout intérêt à se tourner vers une classification non supervisée, qui ne nécessite pas l'intervention d'un "expert" (en l'occurrence, l'utilisateur).
 
-*Note au lecteur: la fonction `recuit_simule` ne produisant pas de résultats convaincants, je n'ai pas jugé intéressant de la détailler ici. Néanmoins, voici le résultat après 50 itérations du recuit :*
+*Note au lecteur: la fonction `recuit_simule` ne produisant pas de résultats convaincants, je n'ai pas jugé inté./ressant de la détailler ici. Néanmoins, voici le résultat après 50 itérations du recuit :*
 
-![run exercice 1, recuit](res/TP4/run_1_recuit.svg)
+![run exercice 1, recuit](./res/TP4/run_1_recuit.svg)
 <figcaption align="center">
   <b>Fig. 23 : Figure obtenue après 50 itérations du recuit simulé</b>
 </figcaption>
 
 ## Segmentation par classification non supervisée
 
-On a maintenant modifié le script `exercice_1`, afin qu'il appelle la fonction `estimation_non_super` qui permet d'identifier les classes par tirage aléatoires. Ainsi, on génère des paramètres $\mu_i$ et $\sigma_i$ au hasard, et on choisit ceux qui minimisent l'argument du problème ci-dessous :
+On a maintenant modifié le script `exercice_1`, afin qu'il appelle la fonction `estimation_non_super` qui permet d'identifier les classes par tirage aléatoi./res. Ainsi, on génère des paramèt./res $\mu_i$ et $\sigma_i$ au hasard, et on choisit ceux qui minimisent l'argument du problème ci-dessous :
 $$
   (\hat{\mu_i}, \hat{\sigma_i}, \hat{\pi_i})_{i \in \{1, ..., N\}} = \argmin_{(\mu_i, \sigma_i, \pi_i)_{i \in \{1, ..., N\}}} \sum_{x=0}^{255} \Bigg[f(x) - \sum_{i=1}^N \frac{p_i}{\sigma_i\sqrt{2\pi}} \exp\bigg\{-\frac{(x - \mu_i)^2}{2\sigma_i^2}\bigg\} \Bigg]
 $$
 
 Les résultats sont très convaincants, et proches de ceux obtenus avec la classification supervisée, comme on peut le constater sur la figure suivante :
 
-![run exercice 2](res/TP4/run_2.svg)
+![run exercice 2](./res/TP4/run_2.svg)
 ___
 <figcaption align="center">
   <b>Fig. 24 : Classification non supervisée</b>
@@ -398,7 +398,7 @@ On aborde maintenant la détection et le comptage d'individus sur une image, en 
 
 L'exécution du script `exercice_0` nous permet de trouver une faille à la technique mentionnée précédemment, qui est la tendance naturelle des disques à ce regrouper en deux ou trois points très lumineux, en raison du fort niveau de gris en ces positions.
 
-![run exercice 0](res/TP5/run_0.svg)
+![run exercice 0](./res/TP5/run_0.svg)
 ___
 <figcaption align="center">
   <b>Fig. 25 : Détection naïve sans contraintes entre les disques</b>
@@ -409,9 +409,9 @@ $$
   U(c) = -\sum_{1\le i\le N} \overline{I}(c_i) + \beta \sum_{1 \le j \le N} \delta(\|c_j - c_i\| \le \sqrt{2}R)
 $$
 
-On constate alors une nette amélioration, puisque les disques sont "forcés" à rester éloignés de leurs voisins, comme on peut le constater sur la figure suivante :
+On constate alors une nette amélioration, puisque les disques sont "forcés" à ./rester éloignés de leurs voisins, comme on peut le constater sur la figure suivante :
 
-![run exercice 1](res/TP5/run_1.svg)
+![run exercice 1](./res/TP5/run_1.svg)
 ___
 <figcaption align="center">
   <b>Fig. 26 : Détection avec contraintes de proximité entre les disques</b>
@@ -419,7 +419,7 @@ ___
 
 ## Détection de flamants roses par processus ponctuel marqué
 
-On s'intéresse maintenant à une approche par processus ponctuel marqué, qui à la différence d'un champ de Markov, est un processus aléatoire dont la dimension temporelle est importante. Encore une fois, on cherche à minimiser l'énergie, dont la nouvelle expression est :
+On s'inté./resse maintenant à une approche par processus ponctuel marqué, qui à la différence d'un champ de Markov, est un processus aléatoire dont la dimension temporelle est importante. Encore une fois, on cherche à minimiser l'énergie, dont la nouvelle exp./ression est :
 $$
   U(c) = -\sum_{1\le i\le N} U_i(c_i) + \beta \sum_{1 \le j \le N} \delta(\|c_j - c_i\| \le \sqrt{2}R)
 $$
@@ -452,10 +452,10 @@ stateDiagram-v2
   loop --> [*]
 ```
 
-Les résultats obtenus sont plutôt satisfaisants, et on peut constater que les disques sont bien placés, bien que certains d'entre-eux soient tout de même quelques-fois plus d'un par flamant. Ce problème peut être résolu en modifiant certains des paramètres de façon a contraindre un peu plus les disques à rester bien sur le flamant, tout en gardant leurs distances avec leurs voisins.
+Les résultats obtenus sont plutôt satisfaisants, et on peut constater que les disques sont bien placés, bien que certains d'entre-eux soient tout de même quelques-fois plus d'un par flamant. Ce problème peut être résolu en modifiant certains des paramèt./res de façon a contraindre un peu plus les disques à ./rester bien sur le flamant, tout en gardant leurs distances avec leurs voisins.
 
-![run exercice 2](res/TP5/run_2.svg)
+![run exercice 2](./res/TP5/run_2.svg)
 
 # Conclusion
 
-Cette étude a été très intéressante, et m'a permis d'aborder une multitude de problématiques du traitement d'image aussi passionnantes que variées. J'aurais aimé pouvoir y consacrer plus de temps, et faire notamment les parties facultatives des TP, mais le travail requis dans les autres matières ne m'a pas permis de le faire.
+Cette étude a été très inté./ressante, et m'a permis d'aborder une multitude de problématiques du traitement d'image aussi passionnantes que variées. J'aurais aimé pouvoir y consacrer plus de temps, et faire notamment les parties facultatives des TP, mais le travail requis dans les aut./res matiè./res ne m'a pas permis de le faire.
