@@ -2,3 +2,5 @@ theme: jekyll-theme-minimal
 title: Report
 description: Audio-visual data processing report
 markdown: kramdown
+kramdown:
+  math_engine: katex
