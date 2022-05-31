@@ -1,0 +1,101 @@
+{
+  "main": {
+    "id": "81074b09b61cdfe4",
+    "type": "split",
+    "children": [
+      {
+        "id": "81d313a032cdea9e",
+        "type": "leaf",
+        "state": {
+          "type": "image",
+          "state": {
+            "file": "docs/res/TP4/run_1_recuit.svg"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "593dde0599595a20",
+    "type": "split",
+    "children": [
+      {
+        "id": "918ae7409625207f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "74303ae2f1d1a69d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "752dfce8fde52cbd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "fd46308fb77e7045",
+    "type": "split",
+    "children": [
+      {
+        "id": "d1f9cf6dce7d267a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "23c8f2f0f228cca3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "docs/res/TP4/run_1_recuit.svg",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "81d313a032cdea9e",
+  "lastOpenFiles": [
+    "docs/res/TP4/run_1_recuit.svg",
+    "docs/index.md",
+    "src/matlab/TP1/doc/report.md",
+    "src/matlab/TP1/sujet_TP1.pdf",
+    "src/matlab/TP2/sujet_TP2.pdf",
+    "src/matlab/TP3/sujet_TP3.pdf",
+    "src/matlab/TP4/cellules.jpg",
+    "src/matlab/TP4/sujet_TP4.pdf",
+    "src/matlab/TP5/data/colonie.png",
+    "src/matlab/TP5/sujet_TP5.pdf"
+  ]
+}

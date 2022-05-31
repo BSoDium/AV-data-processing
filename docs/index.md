@@ -142,8 +142,8 @@ Ici, on a fait le choix de ne plus travailler avec $\beta$ mais avec $\delta$, t
 $$
 \left\{
   \begin{array}{ll}
-    \hat{\beta} = \argmin_{\beta = \beta_1 ... \beta_{d-1}} \|A\beta^\top - C\|^2\\
-    \hat{\delta} = \argmin_{\delta = \delta_1 ... \delta_{d-1}} \|A\delta^\top - C\|^2
+    \hat{\beta} = argmin_{\beta = \beta_1 ... \beta_{d-1}} \|A\beta^\top - C\|^2\\
+    \hat{\delta} = argmin_{\delta = \delta_1 ... \delta_{d-1}} \|A\delta^\top - C\|^2
   \end{array}
 \right.
 \newline
