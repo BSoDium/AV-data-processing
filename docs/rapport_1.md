@@ -26,7 +26,6 @@
   - [Détection de flamants roses par processus ponctuel marqué](#détection-de-flamants-roses-par-processus-ponctuel-marqué)
 - [Conclusion](#conclusion)
 
-
 # Abstract
 Ce rapport présente l'intégralité du travail réalisé dans le cadre des TP 1 à 5 de traitement de données audio-visuelles. Les images et extraits de code utilisés ici sont fournis uniquement à titre d'illustration de mes propos, et ne constituent en aucun cas une solution idéale aux questions posées. Toute utilisation de ces résultats devra donc se faire avec prudence.
 

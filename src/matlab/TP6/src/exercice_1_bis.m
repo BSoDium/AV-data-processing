@@ -9,9 +9,8 @@ close all
 clc
 
 % Mise en place de la figure pour affichage :
-taille_ecran = get(0, 'ScreenSize');
-L = taille_ecran(3);
-H = taille_ecran(4);
+L = 1300;
+H = 900;
 figure('Name', 'Debruitage par variation totale', ...
   'Position', [0.06 * L, 0.1 * H, 0.9 * L, 0.7 * H]);
 
@@ -56,7 +55,7 @@ b_g = u0_g;
 b_b = u0_b;
 
 % Point fixe :
-lambda = 15; % Poids de la r�gularisation
+lambda = 10; % Poids de la r�gularisation
 u_k_r = u0_r;
 u_k_g = u0_g;
 u_k_b = u0_b;
