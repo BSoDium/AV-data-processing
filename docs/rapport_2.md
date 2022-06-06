@@ -4,6 +4,8 @@
   - [Débruitage par variation totale](#débruitage-par-variation-totale)
   - [Inpainting par variation totale](#inpainting-par-variation-totale)
 - [Techniques de photomontage](#techniques-de-photomontage)
+  - [Photomontage par collage](#photomontage-par-collage)
+  - [Décoloration partielle d'une image](#décoloration-partielle-dune-image)
 - [Décomposition d'une image](#décomposition-dune-image)
 - [Conclusion](#conclusion)
 
@@ -47,17 +49,41 @@ On s'intéresse maintenant à une autre application du modèle utilisé précéd
 
 ![run 15 exercice 2](./res/TP6/run_2_lambda_15.svg)
 <figcaption align="center">
-  <b>Fig. 4 : Inpainting pour lambda = 15</b>
+  <b>Fig. 4 : Inpainting - suppression de defaut - pour lambda = 15</b>
 </figcaption>
 
-Dans un second temps, on n'utilise plus de carte, mais un critère de couleur qui permet de localiser le defaut:
+Dans un second temps, on n'utilise plus de carte, mais un critère de couleur qui permet de localiser le defaut. En l'occurence, on utilise ici la couleur jaune **rgb(255, 255, 0)**:
 
 ![run 15 exercice 2 bis](./res/TP6/run_2_bis_lambda_15.svg)
 <figcaption align="center">
-  <b>Fig. 5 : Inpainting pour lambda = 15</b>
+  <b>Fig. 5 : Inpainting - suppression de texte - pour lambda = 15</b>
 </figcaption>
 
+![run 15 exercice 2 bis custom](./res/TP6/run_2_bis_custom_lambda_15.svg)
+<figcaption align="center">
+  <b>Fig. 6 : Inpainting - suppression de defaut - pour lambda = 15</b>
+</figcaption>
+
+Cette méthode est très efficace, comme en témoignent les résultats obtenus, cependant elle ne fonctionne que pour des défauts de faible largeur (traits ou texte).
+
 # Techniques de photomontage
+
+## Photomontage par collage
+
+L'approche la plus naïve "colle" une image détourée par à l'aide d'un masque sur une autre image. Un exemple ci-dessous:
+
+![run 0](res/TP7/run_0.svg)
+<figcaption align="center">
+  <b>Fig. 7 : Photomontage par collage naïf</b>
+</figcaption>
+
+Une version plus évoluée de cet algorithme fait appel aux techniques d'inpainting utilisées précédemment, adaptées de façon à adapter les couleurs de l'image détourée à celle de l'image de base.
+
+
+![run 1](res/TP7/run_1_orca.svg)
+![run 1](res/TP7/run_1_macronde.svg)
+
+## Décoloration partielle d'une image
 
 # Décomposition d'une image
 

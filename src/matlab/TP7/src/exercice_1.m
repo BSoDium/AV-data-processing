@@ -5,8 +5,8 @@ L = taille_ecran(3);
 H = taille_ecran(4);
 
 % Lecture et affichage de l'image source s :
-figure('Name', 'Photomontage naif', 'Position', [0.1 * L, 0.1 * H, 0.9 * L, 0.7 * H]);
-s = imread('../Images/orque.jpg');
+figure('Name', 'Photomontage par collage', 'Position', [0.1 * L, 0.1 * H, 0.9 * L, 0.7 * H]);
+s = imread('../Images/macron.jpg');
 [nb_lignes_s, nb_colonnes_s, nb_canaux] = size(s);
 subplot(1, 2, 1);
 imagesc(s);
@@ -31,8 +31,8 @@ j_p_min = min(j_p(:));
 j_p_max = max(j_p(:));
 
 % Lecture et affichage de l'image cible c :
-c = imread('../Images/montagne.jpg');
-c = c(:, 1:770, :);
+c = imread('../Images/joconde.jpg');
+c = c(:, 1:min(770, size(c, 2)), :);
 [nb_lignes_c, nb_colonnes_c, nb_canaux] = size(c);
 subplot(1, 2, 2);
 imagesc(c);
