@@ -7,6 +7,11 @@
   - [Photomontage par collage](#photomontage-par-collage)
   - [Décoloration partielle d'une image](#décoloration-partielle-dune-image)
 - [Décomposition d'une image](#décomposition-dune-image)
+  - [Décomposition par modification de spectre](#décomposition-par-modification-de-spectre)
+  - [Décomposition par modèle ROF](#décomposition-par-modèle-rof)
+- [Tomographie](#tomographie)
+  - [Résolution algébrique](#résolution-algébrique)
+  - [Résolution par rétroprojection](#résolution-par-rétroprojection)
 - [Conclusion](#conclusion)
 
 # Abstract
@@ -82,10 +87,73 @@ Une version plus évoluée de cet algorithme fait appel aux techniques d'inpaint
 
 ![run 1](res/TP7/run_1_orca.svg)
 ![run 1](res/TP7/run_1_macronde.svg)
+<figcaption align="center">
+  <b>Fig. 8 : Photomontages par collage intelligent</b>
+</figcaption>
 
 ## Décoloration partielle d'une image
 
+La même fonction collage peut être utilisée pour décolorer une image: On utilise une source et une cible identiques, mais on convertit au préalable l'image cible en niveaux de gris avant de coller. On obtient alors les résultats suivants:
+
+![run 2](res/TP7/run_2_rose.svg)
+![run 2](res/TP7/run_2_duck.svg)
+<figcaption align="center">
+  <b>Fig. 9 : Photomontages par décoloration partielle</b>
+</figcaption>
+
 # Décomposition d'une image
+
+Dans cette partie, on se propose d'étudier la décomposition d'une image d'entrée $u$ en deux autres images $\overline{u}$ et $\overline{u}^c$ de tailles identiques à $u$, et telles que leur somme est égale à $u$. Ce sujet est assez large, c'est pourquoi nous nous limiterons ici aux décompositions structure-texture.
+
+## Décomposition par modification de spectre
+
+![run 0](res/TP8/run_0.svg)
+<figcaption align="center">
+  <b>Fig. 10 : Exemple de modification de spectre d'une grille</b>
+</figcaption>
+
+![run 1](res/TP8/run_1.svg)
+<figcaption align="center">
+  <b>Fig. 11 : Décomposition structure-texture par modification de spectre</b>
+</figcaption>
+
+## Décomposition par modèle ROF
+
+Il est toutefois tout à fait possible de séparer structure et texture sans passer par la transformée de Fourier. On peut utiliser une approche variationnelle, en l'occurence le modèle ROF défini comme suit:
+
+$$
+\begin{equation}
+E_{ROF}(\overline{u}) = \int \int_{\omega} \bigg\{\frac{1}{2} [\overline{u}(x, y) - u(x, y)]^2 + \lambda |\nabla \overline{u}(x, y)|_{\epsilon} \bigg\} \space dx \space dy
+\end{equation}
+$$
+
+![run 2](res/TP8/run_2.svg)
+![run 2 lara croft](res/TP8/run_2_lara.svg)
+<figcaption align="center">
+  <b>Fig. 13 : Décompositions structure-texture par modèle ROF</b>
+</figcaption>
+
+On remarque un très clair lissage de l'image de structure (au milieu), ce qui est cohérent puisque la texture a été retirée. L'image de texture semble récupérer toutes les imperfections de l'image d'origine, un résultat qui correspond encore une fois à nos attentes.
+
+# Tomographie
+
+La tomographie est une technique d'imagerie par sections non destructive, permettant de reconstruire le volume d'un objet à partir de multiple mesures effectuées depuis l'extérieur de celui-ci. Elle fait appel à une transformation, dite "de Radon", qui pour une de ces mesures (en l'occurence, une section) donne sa projection orthogonale 
+sur une droite $D$ d'angle polaire $\theta$, moyennant une abscisse $t$.
+
+## Résolution algébrique
+
+Après lancement du script de calcul du sinogramme, et résolution à l'aide de l'algorithme de Kaczmarz, on obtient le résultat suivants:
+
+![run 1](res/TP9/run_1.svg)
+<figcaption align="center">
+  <b>Fig. 14 : Tomographie - résolution algébrique</b>
+</figcaption>
+
+
+## Résolution par rétroprojection
+
+
+![run 2](res/TP9/run_2.svg)
 
 
 # Conclusion

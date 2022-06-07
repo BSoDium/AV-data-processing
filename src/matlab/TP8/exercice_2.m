@@ -13,8 +13,7 @@ H = taille_ecran(4);
 figure('Name', 'Decomposition structure + texture par le modele ROF', 'Position', [0, 0, L, 0.5 * H]);
 
 % Lecture et affichage de l'image u :
-u = imread('Images/pilier.png');
-u = imread('Images/macro.jpg');
+u = imread('Images/Lara.jpg');
 u = double(u);
 [nb_lignes, nb_colonnes, nb_canaux] = size(u);
 subplot(1, 3, 1);
@@ -77,6 +76,10 @@ for it = 1:nb_iterations
   axis equal;
   axis off;
   title(['Texture (' num2str(100 * it / nb_iterations, '%.0f') '%)'], 'FontSize', 30);
+
+  drawnow;
+end
+ 'FontSize', 30);
 
   drawnow;
 end

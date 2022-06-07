@@ -26,7 +26,7 @@ title('Sinogramme', 'FontSize', 20);
 drawnow;
 
 % Rétroprojection :
-f = retroprojection(filtered_sinogramme, theta, nb_rayons, nb_lignes, nb_colonnes);
+f = retroprojection(sinogramme, theta, nb_rayons, nb_lignes, nb_colonnes);
 
 % Affichage de la solution :
 subplot(1, 3, 3);
@@ -35,3 +35,4 @@ colormap gray;
 axis off;
 axis equal;
 title('Resultat de la tomographie', 'FontSize', 20);
+e', 20);

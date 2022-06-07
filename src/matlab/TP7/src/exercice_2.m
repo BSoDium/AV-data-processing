@@ -6,7 +6,7 @@ H = taille_ecran(4);
 
 % Lecture et affichage de l'image source s :
 figure('Name', 'Photomontage par collage', 'Position', [0.1 * L, 0.1 * H, 0.9 * L, 0.7 * H]);
-s = imread('../Images/rose.jpg');
+s = imread('../Images/duck.jpg');
 [nb_lignes_s, nb_colonnes_s, nb_canaux] = size(s);
 subplot(1, 2, 1);
 imagesc(s);
@@ -31,33 +31,23 @@ j_p_min = min(j_p(:));
 j_p_max = max(j_p(:));
 
 % Lecture et affichage de l'image cible c :
-c = imread('../Images/rose.jpg');
+c = imread('../Images/duck.jpg');
 % conversion au format LAB :
-c_lab = rgb2lab(c);
+c = rgb2lab(c);
 % on annule les deuxième et troisième canaux :
-c_lab(:, :, 2:3) = 0;
-c = lab2rgb(c_lab);
+c(:, :, 2:3) = 0;
 c = c(:, 1:min(770, size(c, 2)), :);
 [nb_lignes_c, nb_colonnes_c, nb_canaux] = size(c);
 subplot(1, 2, 2);
-imagesc(c);
+imagesc(lab2rgb(c));
 axis image off;
 title('Image cible', 'FontSize', 20);
 hold on;
 
-% Sélection et affichage d'un rectangle r dans c :
-disp('Cliquez les deux extremites de la zone cible');
-[x_r, y_r] = ginput(2);
-i_r = min(max(round(y_r), 1), nb_lignes_c);
-j_r = min(max(round(x_r), 1), nb_colonnes_c);
-j_r_min = min(j_r(:));
-j_r_max = max(j_r(:));
-i_r_min = min(i_r(:));
-i_r_max = max(i_r(:));
-line([j_r_min j_r_max], [i_r_min, i_r_min], 'Color', 'r', 'LineWidth', 2);
-line([j_r_min j_r_max], [i_r_max, i_r_max], 'Color', 'r', 'LineWidth', 2);
-line([j_r_min j_r_min], [i_r_min, i_r_max], 'Color', 'r', 'LineWidth', 2);
-line([j_r_max j_r_max], [i_r_min, i_r_max], 'Color', 'r', 'LineWidth', 2);
+i_r_min = i_p_min;
+i_r_max = i_p_max;
+j_r_min = j_p_min;
+j_r_max = j_p_max;
 
 % Sous-matrice de c correspondant au rectangle r :
 r = c(i_r_min:i_r_max, j_r_min:j_r_max, :);
@@ -74,7 +64,36 @@ p = imresize(p, [nb_lignes_r, nb_colonnes_r]);
 % Calcul et affichage de l'image résultat u :
 u = c;
 interieur = find(p > 0);
+u(i_r_min:i_r_max, j_r_min:j_r_max, :) = collage(r, rgb2lab(s), interieur);
+u = lab2rgb(u);
+hold off;
+imagesc(u);
+axis image off;
+title('Resultat du photomontage', 'FontSize', 20);
+FontSize', 20);
+);
+ax, :);
+
+% Seules les sous-matrices à l'intérieur du rectangle englobant de p sont conservées :
+s = s(i_p_min:i_p_max, j_p_min:j_p_max, :);
+p = p(i_p_min:i_p_max, j_p_min:j_p_max);
+
+% Redimensionnement de s et p aux dimensions de r :
+[nb_lignes_r, nb_colonnes_r, nb_canaux] = size(r);
+s = imresize(s, [nb_lignes_r, nb_colonnes_r]);
+p = imresize(p, [nb_lignes_r, nb_colonnes_r]);
+
+% Calcul et affichage de l'image résultat u :
+u = c;
+interieur = find(p > 0);
 u(i_r_min:i_r_max, j_r_min:j_r_max, :) = collage(r, s, interieur);
+u = lab2rgb(u);
+hold off;
+imagesc(u);
+axis image off;
+title('Resultat du photomontage', 'FontSize', 20);
+:) = collage(r, s, interieur);
+u = lab2rgb(u);
 hold off;
 imagesc(u);
 axis image off;

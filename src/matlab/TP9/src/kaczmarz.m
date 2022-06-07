@@ -22,3 +22,18 @@ function f = kaczmarz(p, W, n_boucles)
   end
 
 end
+   end
+
+  end
+
+end
+(k - 1, n_mes) + 1;
+
+    if WnormCol(i) ~= 0
+      w_i = W_t(:, i)'; % memory access optimization
+      f = f + (p(i) - w_i * f) / WnormCol(i) * w_i';
+    end
+
+  end
+
+end
