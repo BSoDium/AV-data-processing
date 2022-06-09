@@ -16,6 +16,13 @@
   - [Transformée de Fourier à court terme](#transformée-de-fourier-à-court-terme)
   - [Compression acoustique](#compression-acoustique)
   - [Stéganographie acoustique](#stéganographie-acoustique)
+- [Reconnaissance musicale](#reconnaissance-musicale)
+  - [Calcul des pics spectraux](#calcul-des-pics-spectraux)
+  - [Appariement des pics spectraux](#appariement-des-pics-spectraux)
+  - [Reconnaissance musicale (simplifiée)](#reconnaissance-musicale-simplifiée)
+- [Séparation de sources](#séparation-de-sources)
+  - [Séparation harmoniques et percussives](#séparation-harmoniques-et-percussives)
+  - [Décomposition de sonagramme par NMF](#décomposition-de-sonagramme-par-nmf)
 - [Conclusion](#conclusion)
 
 # Abstract
@@ -176,6 +183,60 @@ $$
 ## Compression acoustique
 
 ## Stéganographie acoustique
+
+
+# Reconnaissance musicale
+
+On aborde maintenant une technologie très utilisée de nos jours, notamment par Shazam, qui est la reconnaissance de morceaux de musique à la volée. Pour ce faire, il est nécessaire de définir un système d'empreinte musicale, capable de décrire de façon fiable et facilement identifiable un morceau de musique. On utilise ici les **pics spectraux**.
+
+## Calcul des pics spectraux
+
+Voici le résultat de l'algorithme de calcul des pics spectraux:
+
+![run 1](res/TP11/run_1.svg)
+<figcaption align="center">
+  <b>Fig. 16 : Calcul des pics spectraux</b>
+</figcaption>
+
+## Appariement des pics spectraux
+
+Dans un second temps, on va améliorer notre capacité d'indexation en appariant les pics de façon à créer une signature musicale plus aisément identifiable:
+
+![run 2](res/TP11/run_2.svg)
+<figcaption align="center">
+  <b>Fig. 17 : Appariement des pics spectraux</b>
+</figcaption>
+
+## Reconnaissance musicale (simplifiée)
+
+Malheureusement, les résultats obtenus sont loins d'être satisfaisants. Le script `statistiques.m` affiche un taux de reconnaissance de **25%** ce qui est extrèmement bas. Il s'agit probablement d'une erreur dans mon code, mais je n'ai pas réussi à l'identifier jusque là.
+
+# Séparation de sources
+
+Un signal sonore contient souvent plusieurs sources superposées, qu'il s'agisse de bruits ou de multiples sources de même nature. Il peut donc s'avérer intéressant de chercher à les séparer pour les analyser individuellement.
+
+## Séparation harmoniques et percussives
+
+Il existe plusieurs méthodes pour séparer des sources, une approche simple est la séparation harmonique/percussive:
+
+![run 1 all](res/TP12/run_1_all.svg)
+<figcaption align="center">
+  <b>Fig. 18 : Spectre du signal d'origine</b>
+</figcaption>
+
+![run 1](res/TP12/run_1.svg)
+<figcaption align="center">
+  <b>Fig. 19 : Séparation harmoniques et percussives - masques appliqués</b>
+</figcaption>
+
+![run 1 out](res/TP12/run_1_out.svg)
+<figcaption align="center">
+  <b>Fig. 20 : Séparation harmoniques et percussives - Spectre des signaux séparés</b>
+</figcaption>
+
+
+## Décomposition de sonagramme par NMF
+
 
 
 # Conclusion
