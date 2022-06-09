@@ -12,6 +12,10 @@
 - [Tomographie](#tomographie)
   - [Résolution algébrique](#résolution-algébrique)
   - [Résolution par rétroprojection](#résolution-par-rétroprojection)
+- [Compression audio](#compression-audio)
+  - [Transformée de Fourier à court terme](#transformée-de-fourier-à-court-terme)
+  - [Compression acoustique](#compression-acoustique)
+  - [Stéganographie acoustique](#stéganographie-acoustique)
 - [Conclusion](#conclusion)
 
 # Abstract
@@ -142,7 +146,7 @@ sur une droite $D$ d'angle polaire $\theta$, moyennant une abscisse $t$.
 
 ## Résolution algébrique
 
-Après lancement du script de calcul du sinogramme, et résolution à l'aide de l'algorithme de Kaczmarz, on obtient le résultat suivants:
+Après lancement du script de calcul du sinogramme, et résolution à l'aide de l'algorithme de Kaczmarz, on obtient l'image reconstituée suivante:
 
 ![run 1](res/TP9/run_1.svg)
 <figcaption align="center">
@@ -152,8 +156,26 @@ Après lancement du script de calcul du sinogramme, et résolution à l'aide de 
 
 ## Résolution par rétroprojection
 
+On aborde maintenant une approche différente, qui résoud un des inconvénients de la méthode précédente: son manque de rapidité. On calcule ici la somme des contributions des différentes "déprojections" des données:
+
+$$
+\begin{equation}
+f(x, y) \approx \frac{1}{n_\theta} \sum_{\theta} {p_\theta (x \cos(\theta) + y \sin(\theta))}
+\end{equation}
+$$
 
 ![run 2](res/TP9/run_2.svg)
+<figcaption align="center">
+  <b>Fig. 15 : Tomographie - résolution par rétroprojection</b>
+</figcaption>
+
+# Compression audio
+
+## Transformée de Fourier à court terme
+
+## Compression acoustique
+
+## Stéganographie acoustique
 
 
 # Conclusion
