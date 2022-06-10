@@ -178,11 +178,34 @@ $$
 
 # Compression audio
 
+Utilisée presque partout, que ce soit pour le streaming ou le stockage de fichiers sonores volumineux, la compression acoustique est une technique de compression de fichiers qui permet de réduire leur taille.
+
 ## Transformée de Fourier à court terme
+
+Dans un premier temps, on calcule et on affiche simplement la transformée de Fourier à court terme d'un signal passé en argument.
+
+![run 1](res/TP10/run_1.svg)
+<figcaption align="center">
+  <b>Fig. 16 : Transformée de Fourier à court terme</b>
+</figcaption>
 
 ## Compression acoustique
 
+On tire maintenant parti des limitations des capacités auditives humaines, ce qui nous permet de grandement réduire la taille des fichiers sonores. Ci-dessous, le résultat pour un taux de compression de $0.1$:
+
+![run 2](res/TP10/run_2.svg)
+<figcaption align="center">
+  <b>Fig. 17 : Compression acoustique</b>
+</figcaption>
+
 ## Stéganographie acoustique
+
+Un exemple d'utilisation de la compression acoustique est la stéganographie. On utilise l'espace libéré par la compression d'un fichier sonore pour en coder un autre qui est alors caché dans le fichier original:
+
+![run 3](res/TP10/run_3.svg)
+<figcaption align="center">
+  <b>Fig. 18 : Stéganographie acoustique</b>
+</figcaption>
 
 
 # Reconnaissance musicale
@@ -195,7 +218,7 @@ Voici le résultat de l'algorithme de calcul des pics spectraux:
 
 ![run 1](res/TP11/run_1.svg)
 <figcaption align="center">
-  <b>Fig. 16 : Calcul des pics spectraux</b>
+  <b>Fig. 19 : Calcul des pics spectraux</b>
 </figcaption>
 
 ## Appariement des pics spectraux
@@ -204,7 +227,7 @@ Dans un second temps, on va améliorer notre capacité d'indexation en appariant
 
 ![run 2](res/TP11/run_2.svg)
 <figcaption align="center">
-  <b>Fig. 17 : Appariement des pics spectraux</b>
+  <b>Fig. 20 : Appariement des pics spectraux</b>
 </figcaption>
 
 ## Reconnaissance musicale (simplifiée)
@@ -221,24 +244,29 @@ Il existe plusieurs méthodes pour séparer des sources, une approche simple est
 
 ![run 1 all](res/TP12/run_1_all.svg)
 <figcaption align="center">
-  <b>Fig. 18 : Spectre du signal d'origine</b>
+  <b>Fig. 21 : Spectre du signal d'origine</b>
 </figcaption>
 
 ![run 1](res/TP12/run_1.svg)
 <figcaption align="center">
-  <b>Fig. 19 : Séparation harmoniques et percussives - masques appliqués</b>
+  <b>Fig. 22 : Séparation harmoniques et percussives - masques appliqués</b>
 </figcaption>
 
 ![run 1 out](res/TP12/run_1_out.svg)
 <figcaption align="center">
-  <b>Fig. 20 : Séparation harmoniques et percussives - Spectre des signaux séparés</b>
+  <b>Fig. 23 : Séparation harmoniques et percussives - Spectre des signaux séparés</b>
 </figcaption>
 
 
 ## Décomposition de sonagramme par NMF
 
+On se propose désormais d'afficher à partir du sonagramme d'un enregistrement une paire de matrices, $D$ et $A$ telles que $S \approx D A$ suivant la méthode de factorisation *en matrices non négatives* (dite NMF). les colonnes de $D$ contiennent le spectre de chaque source (en l'occurence de chaque note puisqu'on s'est arrangé pour qu'il y ait le même nombre de colonnes que de notes dans l'extrait). $A$ quant à lui est une représentation MIDI approximative de la partition. Ci-dessous, le résultat pour le sonagramme d'un extrait de *Au clair de la lune*.
 
+![run 2](res/TP12/run_2.svg)
+<figcaption align="center">
+  <b>Fig. 24 : Décomposition NMF d'Au clair de la lune</b>
+</figcaption>
 
 # Conclusion
 
-Cette étude a été très intéressante, et m'a permis d'aborder une multitude de problématiques du traitement d'image aussi passionnantes que variées. J'aurais aimé pouvoir y consacrer plus de temps, et faire notamment les parties facultatives des TP, mais le travail requis dans les autres matières ne m'a pas permis de le faire.
+Cette étude a été très intéressante, et m'a permis d'aborder une multitude de problématiques du traitement de données audio-visuelles aussi passionnantes que variées. J'aurais aimé pouvoir y consacrer plus de temps, et faire notamment les parties facultatives des TP, mais le travail requis dans les autres matières ne m'a pas permis de le faire.
